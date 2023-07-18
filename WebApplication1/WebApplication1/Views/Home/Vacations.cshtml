@@ -1,0 +1,33 @@
+﻿@model List<WebApplication1.Controllers.Vacation>
+
+@{
+    ViewBag.Title = "Отпуска";
+}
+
+<h2>Отпуска</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Сотрудник</th>
+            <th>Пол</th>
+            <th>Должность</th>
+            <th>Лет</th>
+            <th>Дата начала</th>
+            <th>Дата окончания</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vacation in Model)
+        {
+        <tr>
+            <td>@vacation.Employee.FullName</td>
+            <td>@vacation.Employee.Gender</td>
+            <td>@vacation.Employee.Position</td>
+            <td>@vacation.Employee.Age</td>
+            <td>@vacation.StartDate.ToShortDateString()</td>
+            <td>@vacation.EndDate.ToShortDateString()</td>
+        </tr>
+        }
+    </tbody>
+</table>

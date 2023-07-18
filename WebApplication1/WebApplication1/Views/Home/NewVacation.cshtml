@@ -1,0 +1,32 @@
+﻿@model WebApplication1.Controllers.Vacation
+
+@{
+    ViewBag.Title = "Новый отпуск";
+}
+
+<h2>Новый отпуск</h2>
+
+@using (Html.BeginForm("CreateVacation", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary()
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Employee)
+    @Html.DropDownListFor(m => m.EmployeeId, (SelectList)ViewBag.Employees, "Выберите сотрудника", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.Employee.Id)
+</div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.StartDate)
+        @Html.TextBoxFor(m => m.StartDate, new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.StartDate)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.EndDate)
+        @Html.TextBoxFor(m => m.EndDate, new { type = "date", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.EndDate)
+    </div>
+
+    <button type="submit" class="btn btn-primary">Отправить</button>
+}

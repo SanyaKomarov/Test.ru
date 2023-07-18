@@ -1,0 +1,41 @@
+﻿@model List<WebApplication1.Controllers.VacationIntersection>
+
+@{
+    ViewBag.Title = "Пересечения отпусков";
+}
+
+<h2>Пересечения отпусков</h2>
+
+@foreach (var intersection in Model)
+{
+    <h3>@intersection.Criteria</h3>
+
+    @if (intersection.Vacations.Any())
+    {
+        <table>
+            <tr>
+                <th>ФИО сотрудника</th>
+                <th>Пол</th>
+                <th>Лет</th>
+                <th>Должность</th>
+                <th>Дата начала отпуска</th>
+                <th>Дата окончания отпуска</th>
+            </tr>
+            @foreach (var vacation in intersection.Vacations)
+            {
+        <tr>
+            <td>@vacation.Employee.FullName</td>
+            <td>@vacation.Employee.Gender</td>
+            <td>@vacation.Employee.Age</td>
+            <td>@vacation.Employee.Position</td>
+            <td>@vacation.StartDate.ToShortDateString()</td>
+            <td>@vacation.EndDate.ToShortDateString()</td>
+        </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>Нет пересечений отпусков.</p>
+    }
+}
